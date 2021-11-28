@@ -1,0 +1,72 @@
+{% extends 'shopping/basic.html' %}
+
+{% block title %} Shopping App {% endblock%} 
+{% load static %}
+{% block css %} 
+<style >body{ /* background-color: ivory; */ background:
+linear-gradient(162deg, pink, blue); } .col-md-3 { display: inline-block;
+margin-left: -4px; } .col-md-3 img { width: 100%; height: auto; }
+.carousel-indicators [data-bs-target] { background-color: rgb(47, 255, 64); }
+body .carousel-indicator li { background-color: rgb(47, 255, 64); } body
+.carousel-control-prev-icon, body .carousel-control-next-icon {
+background-color: blue; } body .no-padding { padding-left: 0; padding-right: 0;
+} img .card-img-top{width: 50px; height: 50px;}</style>{% endblock %}
+
+ {% block body %} 
+
+ {%load static%}
+<div class="container">
+  <div id="demo" class="carousel slide my-3" data-bs-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-bs-target="#demo" data-bs-slide-to="0" class="active"></li>
+      {% for i in range %}
+      <li data-bs-target="#demo" data-bs-slide-to="{{i}}"></li>
+      {% endfor %}
+    </ul>
+
+    <div class="container carousel-inner no-padding">
+      <div class="carousel-item active">
+        <!-- <div class="col-xs-3 col-sm-3 col-md-3">
+          <div class="card" style="width: 18rem">
+            <img
+              src=" /media/{{product.0.image}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{product.0.productname}}</h5>
+              <p class="card-text">{{produt.0.desc}}</p>
+              <a href="#" class="btn btn-primary">1</a>
+            </div>
+          </div>
+        </div> -->
+        {% for i in product|slice:"0:" %}
+          <div class="col-xs-3 col-sm-3 col-md-3">
+            <div class="card" style="width: 18rem">
+              <img src=" /media/{{i.image}}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{i.productname}}</h5>
+                <p class="card-text">{{i.desc}}</p>
+                <a href="#" class="btn btn-primary">2</a>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+          </div>
+          <div class="carousel-item">
+            {% endif %}
+         
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- left and right controls for the slide -->
+  <a class="carousel-control-prev" href="#demo" data-bs-slide="prev"
+    ><span class="carousel-control-prev-icon"></span
+  ></a>
+  <a class="carousel-control-next" href="#demo" data-bs-slide="next"
+    ><span class="carousel-control-next-icon"></span
+  ></a>
+  {% endblock %}
+</div>
